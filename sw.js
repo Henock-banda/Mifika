@@ -1,5 +1,5 @@
 // MIFIKA : fonctionnement hors connexion (met la page et les bibliothèques en mémoire)
-const V='mifika-v23',P=['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png'];
+const V='mifika-v23',P=['./','./index.html'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(P).catch(()=>0)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!=V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{
