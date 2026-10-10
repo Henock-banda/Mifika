@@ -1,4 +1,5 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>MIFIKA Micro-Finance</title><style>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>MIFIKA Micro-Finance</title>
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#2f5d2a"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><style>
 :root{--bg:#f4efe4;--fg:#1f2a1c;--cd:#fff;--g:#2f5d2a;--r:#9b3a1e;--mu:#6b6f60;--bd:#ddd5c3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a12;--fg:#eee9dc;--cd:#1e271b;--g:#5f9a50;--r:#e0805f;--mu:#a3a898;--bd:#33402f}}
 :root[data-theme="dark"]{--bg:#141a12;--fg:#eee9dc;--cd:#1e271b;--g:#5f9a50;--r:#e0805f;--mu:#a3a898;--bd:#33402f}
@@ -144,7 +145,7 @@ V.Messages=()=>{const eq=S.u.filter(u=>!['membre','consultant'].includes(u.role)
 
 const SR=o=>{dc(`<h3>Signatures · reçu ${o.rn}</h3><label>Caissier : ${E((S.u.find(u=>u.id==o.ag)||{}).nom)} (signer au doigt)</label><canvas id=s1></canvas><label>Client : ${E(M(o.mid).nom)}</label><canvas id=s2></canvas><button onclick="SO('${o.id}')">Valider et voir le reçu</button> <button class=o onclick="dc(recu(S.o.find(z=>z.id=='${o.id}')))">Sans signature</button>`);pad2($('#s1'));pad2($('#s2'))};
 const SO=i=>{const o=S.o.find(z=>z.id==i);o.sc=$('#s1').toDataURL();o.sk=$('#s2').toDataURL();sv();dc(recu(o))};
-const site=()=>`<div style="text-align:center;margin:14px 0"><a class="b" href="${E(siteU())}" style="text-decoration:none;display:inline-block;padding:12px 22px;border-radius:999px">🌐 Consulter le site</a><div class=k style="margin-top:8px">MIFIKA · version du 10 octobre 2026 · v22</div></div>`;
+const site=()=>`<div style="text-align:center;margin:14px 0"><a class="b" href="${E(siteU())}" style="text-decoration:none;display:inline-block;padding:12px 22px;border-radius:999px">🌐 Consulter le site</a><div class=k style="margin-top:8px">MIFIKA · version du 10 octobre 2026 · v23</div></div>`;
 
 V.Profil=()=>F('Mon profil',[...(me.role=='membre'?[]:[['login','Identifiant','',0,me.login]]),['old','Code actuel','password'],['nw','Nouveau code','password']],d=>{if(d.old!=me.code)return alert('Code actuel incorrect');if(d.login&&d.login!=me.login&&S.u.some(u=>u.login==d.login))return alert('Identifiant déjà utilisé');if(d.login)me.login=d.login;me.code=d.nw;sv();alert('Profil mis à jour.');V.Profil()},'Enregistrer',`<div class=cd>Votre identifiant actuel : <b>${E(me.login)}</b></div>`);
 const EU=i=>{const u=S.u.find(x=>x.id==i);F('Modifier '+E(u.nom),[['nom','Nom complet','',0,u.nom],['login','Identifiant','',0,u.login],['code','Code secret','',0,u.code]],d=>{if(S.u.some(x=>x.login==d.login&&x.id!=i))return alert('Identifiant déjà utilisé');Object.assign(u,d);sv();V.Utilisateurs()},'Enregistrer')};
